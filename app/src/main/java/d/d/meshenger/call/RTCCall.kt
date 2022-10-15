@@ -118,7 +118,7 @@ class RTCCall : DataChannel.Observer {
     }
 
     // called for outgoing calls
-    private constructor(
+    constructor(
         context: Context,
         binder: MainService.MainBinder,
         contact: Contact,
@@ -690,7 +690,7 @@ class RTCCall : DataChannel.Observer {
     }
 
     fun interface OnStateChangeListener {
-        fun onStateChange(state: CallState?)
+        fun onStateChange(state: CallState)
     }
 
     private class ProxyVideoSink : VideoSink {
@@ -708,17 +708,6 @@ class RTCCall : DataChannel.Observer {
         @Synchronized
         fun setTarget(target: VideoSink?) {
             this.target = target
-        }
-    }
-
-    companion object {
-        fun startCall(
-            context: Context,
-            binder: MainService.MainBinder,
-            contact: Contact,
-            listener: OnStateChangeListener
-        ): RTCCall {
-            return RTCCall(context, binder, contact, listener)
         }
     }
 }
